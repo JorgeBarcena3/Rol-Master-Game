@@ -99,6 +99,10 @@ body {
     overflow-x: hidden;
 }
 
+#Main-menu {
+    position: relative;
+}
+
 #Title img {
     width: 100%;
     padding: 0 5vw 0 5vw;

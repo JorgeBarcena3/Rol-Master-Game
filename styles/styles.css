@@ -95,6 +95,8 @@ video {
 body {
     font-family: "SFSlapstickComic";
     background-color: #3498db;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #Title img {
@@ -130,13 +132,20 @@ body {
 #palabra-game button {
     width: 35vh;
     background: #8e44ad;
+    height: 10vh;
 }
 
 #Autor {
     position: absolute;
     bottom: 1vh;
-    text-align: center;
     color: white;
+    font-size: 13px;
+    margin-left: 8px;
+}
+
+#game-buttons {
+    max-height: 60vh;
+    overflow: scroll;
 }
 
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.jorgebarcenadev.rolgamemaster" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+	<name>
+		Rol Game Master
+	</name>
+	<description>
+		¡Crea partidas de rol multijugador!
+	</description>
+	<author email="j.barcenalumbreras@gmail.com" href="http://www.jorgebarcenadev.com">
+		Jorge Bárcena Lumbreras
+	</author>
+	<content src="index.html" />
+	<plugin name="cordova-plugin-whitelist" spec="1" />
+	<access origin="*" />
+	<universal-links>
+		<host name="rolgamemaster.page.link" scheme="https" />
+		<host name="rol-game-master.firebaseapp.com" scheme="https">
+			<path url="/__/auth/callback" />
+		</host>
+	</universal-links>
+	<allow-intent href="http://*/*" />
+	<allow-intent href="https://*/*" />
+	<allow-intent href="tel:*" />
+	<allow-intent href="sms:*" />
+	<allow-intent href="mailto:*" />
+	<allow-intent href="geo:*" />
+	<platform name="android">
+		<allow-intent href="market:*" />
+		<preference name="AndroidLaunchMode" value="singleTask" />
+		<preference name="android-minSdkVersion" value="28" />
+		<preference name="Orientation" value="portrait" />
+		<preference name="Fullscreen" value="true" />
+	</platform>
+</widget>

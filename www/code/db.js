@@ -130,6 +130,7 @@ function registroGoogle() {
     }).catch(function(error) {
 
         sendAlert("Error al iniciar sesion con Google. Intentelo mas tarde", "Error", "Ok");
+        hideLoading();
     });
 
 

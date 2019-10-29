@@ -2,7 +2,7 @@
  * Quita el main menu
  */
 function removeMainMenu() {
-    $("#Main-menu").animate({ left: '-100vw' }, function() {
+    $("#Main-menu").animate({ left: '-100vw' }, function () {
         $("#Main-menu").css("left", "100vw");
     });
 }
@@ -28,7 +28,7 @@ function showLoading() {
  */
 function hideLoading() {
 
-    $("#LoadingPage").animate({ opacity: '0' }, 250, function() {
+    $("#LoadingPage").animate({ opacity: '0' }, 250, function () {
         $("#LoadingPage").css("display", "none");
     });
 }
@@ -89,9 +89,9 @@ function createRoom() {
  */
 function changeToLobby() {
 
-    getInfoRoom().then(function(data) {
+    getInfoRoom().then(function (data) {
 
-        $("#Game-menu").animate({ left: '-100vw' }, function() {
+        $("#Game-menu").animate({ left: '-100vw' }, function () {
             $("#Game-menu").css("left", "100vw");
         });
         $("#Game-player").animate({ left: '0' });
@@ -132,7 +132,7 @@ function entrarEnLaSala() {
 
     showLoading();
 
-    firebase.database().ref('rooms/' + roomId).once("value").then(function(snapshot) {
+    firebase.database().ref('rooms/' + roomId).once("value").then(function (snapshot) {
 
         var data = snapshot.val();
 
@@ -166,7 +166,7 @@ function subscribeToEvent(roomId) {
 
     this.currentGamemode.isInRoom = true;
     var starCountRef = firebase.database().ref('rooms/' + roomId);
-    starCountRef.on('value', function(snapshot) {
+    starCountRef.on('value', function (snapshot) {
         applyChanges(snapshot.val());
     });
 }
@@ -206,9 +206,10 @@ function startMiniGame(data) {
         let str = "";
         if (Id == currentUser.Id) {
 
-            str += data.game[Id].palabra;
+            str += data.game[Id].palabra.split('*')[0];
 
-            if (data.game[Id].rol == "EMPEZAR")
+
+            if (data.game[Id].rol.includes("EMPEZAR"))
                 str += '<br> <span style="font-size: 0.5em;"> (Empiezas tu) </span>';
 
             $("#rol_player_lbl").html(str);
@@ -234,7 +235,7 @@ function startMiniGame(data) {
 
 function finishMiniGame() {
     //Eliminamos las partidas anteriores
-    getInfoRoom().then(function(data) {
+    getInfoRoom().then(function (data) {
 
         data.isInGame = false;
         firebase.database().ref('rooms/' + currentGamemode.roomId).update(data);
@@ -286,7 +287,7 @@ function printUsers(value) {
  */
 function startGame() {
 
-    getInfoRoom().then(function(data) {
+    getInfoRoom().then(function (data) {
 
         data.isInGame = true;
         firebase.database().ref('rooms/' + currentGamemode.roomId).update(data);
@@ -294,7 +295,7 @@ function startGame() {
         //Update de que se esta creando la partida -- Enviar a firebase, para que todos se queden bloquedados (TODO)
 
         //Obtengo los datos segun mi modo de juego
-        firebase.database().ref('data/gamemode/' + this.currentGamemode.name).once("value").then(function(snapshot) {
+        firebase.database().ref('data/gamemode/' + this.currentGamemode.name).once("value").then(function (snapshot) {
 
             var GamemodeInfo = snapshot.val();
 
@@ -330,27 +331,25 @@ function startGame() {
             let positionToStart;
 
 
-            do {
+            if (numJugadores > 1) {
+
                 positionToStart = Math.floor(Math.random() * numJugadores);
-                if (espiasOrganitation[positionToStart] != "ESPIA")
-                    espiasOrganitation[positionToStart] = "EMPEZAR";
+                espiasOrganitation[positionToStart] += "*EMPEZAR";
+            }
 
-            } while (numJugadores > 1 && espiasOrganitation[positionToStart] == "ESPIA");
-
+           
             for (userID in data.users) {
 
-                if (espiasOrganitation[index] != "ESPIA" && espiasOrganitation[index] != "EMPEZAR") {
-                    espiasOrganitation[index] = 0;
+                if (espiasOrganitation[index] == undefined || !espiasOrganitation[index].includes("ESPIA")) {
+                    espiasOrganitation[index] = "APALABRADO";
                 }
-                let word = (espiasOrganitation[index] == 0 || espiasOrganitation[index] == "EMPEZAR") ? palabraComun : palabraEspia;
+                let word = (espiasOrganitation[index] == "APALABRADO") ? palabraComun : palabraEspia;
                 let key = data.users[userID].user.Id;
 
                 juego[key] = { "rol": espiasOrganitation[index], "palabra": word };
                 index++;
 
             }
-
-
 
             //Eliminamos las partidas anteriores
             firebase.database().ref('rooms/' + currentGamemode.roomId + '/game').remove();

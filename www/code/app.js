@@ -134,3 +134,11 @@ var app = {
 };
 
 app.initialize();
+
+
+
+/**
+ * Sube un archivo a la bbdd de las palabras
+ */
+
+ 

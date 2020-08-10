@@ -130,11 +130,11 @@ var espia_palabra_gm = new Gamemode("espia_palabra_gm",
     "El objetivo del juego es encontrar a los espias entre los jugadores. A cada jugador de la sala se le dirá una palabra, exceptuando a un cierto número de jugadores que se denominarán espias. Se establecerá un orden, y todos los jugadores deberan decir una palabra por turno, relacionada con la palabra clave que se os ha proporcionado (incluido los espias). No podrán ser muy especificas porque los espias adivinaran cual es la palabra y ganaran ellos.", ["Crear una sala", "Unete a una sala existente"]);
 
 //Modo de juego por defecto
-var espia_situacion_gm = new Gamemode("espia_situacion_gm",
-    "El objetivo del juego es encontrar a los espias entre los jugadores. A cada jugador de la sala se le asignará un personaje en una situacion aleatoria, exceptuando a un cierto número de jugadores que se denominarán espias. A continuación, los jugadores podran hacer preguntas entre si, con el fin de descubrir quienes son los espias del grupo. Los espias deberan adivinar en que situacion se encuentran. No podrán ser muy especificas porque los espias adivinaran cual es la situacion y ganaran ellos.", ["Crear una sala", "Unete a una sala existente"]);
+var tres_en_raya_gm = new Gamemode("tres_en_raya_gm",
+    "Las reglas del clásico 3 en raya, pero con una vuelta de tuerca. Ahora podrás predecir el movimiento de tu adversario, si lo aciertas, el no podrá colocar su ficha perderá tu turno; si no el colocorá su ficha de manera habitual.", ["Crear una sesión", "Unete a una sesion existente"]);
 
 //Almacenamos todos los modos de juego
-var gameModes = { espia_palabra_gm, espia_situacion_gm };
+var gameModes = { espia_palabra_gm, tres_en_raya_gm };
 
 //El modo de juego actual
 var currentGamemode = null;

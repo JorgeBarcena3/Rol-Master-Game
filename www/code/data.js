@@ -6,12 +6,13 @@ class Gamemode {
     /*
      * Constructor por defecto, donde se inicializan los parametros
      */
-    constructor(_name = "", _description = "", _options = []) {
+    constructor(_name = "", _description = "", _options = [], _players = 0) {
         this.name = _name;
         this.description = _description;
         this.options = _options;
         this.roomId = undefined;
         this.isInRoom = false;
+        this.maxPlayers = _players;
     }
 
 
@@ -131,7 +132,7 @@ var espia_palabra_gm = new Gamemode("espia_palabra_gm",
 
 //Modo de juego por defecto
 var tres_en_raya_gm = new Gamemode("tres_en_raya_gm",
-    "Las reglas del clásico 3 en raya, pero con una vuelta de tuerca. Ahora podrás predecir el movimiento de tu adversario, si lo aciertas, el no podrá colocar su ficha perderá tu turno; si no el colocorá su ficha de manera habitual.", ["Crear una sesión", "Unete a una sesion existente"]);
+    "Las reglas del clásico 3 en raya, pero con una vuelta de tuerca. Ahora podrás predecir el movimiento de tu adversario, si lo aciertas, el no podrá colocar su ficha perderá tu turno; si no el colocorá su ficha de manera habitual.", ["Crear una sesión", "Unete a una sesion existente"], 2);
 
 //Almacenamos todos los modos de juego
 var gameModes = { espia_palabra_gm, tres_en_raya_gm };

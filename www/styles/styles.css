@@ -450,3 +450,33 @@
             border-radius: 50%;
         }
     }
+    
+    #tablero {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 5%;
+    }
+    
+    #tablero .box {
+        background: silver;
+        width: 25vw;
+        margin: 1px;
+        cursor: pointer;
+        transition: all 300ms ease;
+    }
+    
+    #tablero .box:hover {
+        background: gray;
+    }
+    
+    #tres_info_game {
+        text-align: center;
+        background: #8e44ad;
+        margin: 1vh 5vw;
+        height: 10vh;
+        border-radius: 10px;
+        color: white;
+    }

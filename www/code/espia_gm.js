@@ -1,9 +1,28 @@
+/*
+ * Lleva a cabo la logica del juego del espia
+ */
 class espia_gm {
 
     /*
      * Comienza la mini partida
      */
     startMiniGame(data) {
+
+        let htmlstring =
+            " <div Id='rol_player_container'>" +
+            "   <div Id='rol_player_lbl'>" +
+            "   </div>" +
+            " </div>" +
+            "<div class='row' id='game-menu-buttons'>" +
+            "   <div class='col-12'>" +
+            "        <button class='btn btn-primary red' id='GPL-btn_1' onclick='finishMiniGame()' style='width: 100%;'>" +
+            "              Acabar la partida<br> " +
+            "        </button>" +
+            "   </div>" +
+            "</div>";
+
+        $("#Game-playing").html(htmlstring);
+
 
         for (let Id in data.game) {
 

@@ -1,32 +1,60 @@
+/*
+ * Lleva a cabo la logica del tres en raya
+ */
 class tresEnRaya_gm {
+
+    /*
+     * Constructor predeterminado del juego del tres en raya
+     */
+    constructor() {
+
+    }
+
+    /*
+     * Refresca el tablero
+     */
+    refreshBoard() {
+
+
+        let htmlString = new String(
+            "<div Id='tres_info_game'> Esto es un test </div>" +
+            "<div Id='rol_player_container'> </div>" +
+            "<div class='row' id='game-menu-buttons'>" +
+            "   <div class='col-12'>" +
+            "        <button class='btn btn-primary red' id='GPL-btn_1' onclick='finishMiniGame()' style='width: 100%;'>" +
+            "              Acabar la partida<br> " +
+            "        </button>" +
+            "   </div>" +
+            "</div>");
+
+        $("#Game-playing").html(htmlString);
+
+        htmlString = new String(
+            "<div id='tablero'>" +
+            "<span class='box' data-field='1'></span>" +
+            "<span class='box' data-field='2'></span>" +
+            "<span class='box' data-field='3'></span>" +
+            "<span class='box' data-field='4'></span>" +
+            "<span class='box' data-field='5'></span>" +
+            "<span class='box' data-field='6'></span>" +
+            "<span class='box' data-field='7'></span>" +
+            "<span class='box' data-field='8'></span>" +
+            "<span class='box' data-field='9'></span>" +
+            "</div>");
+
+
+        $("#rol_player_container").css("width", "90vw");
+        $("#rol_player_container").css("height", "46vh");
+
+        $("#rol_player_container").html(htmlString);
+    }
 
     /*
      * Comienza la mini partida
      */
     startMiniGame(data) {
 
-        for (Id in data.game) {
-
-            let str = "";
-            if (Id == currentUser.Id) {
-
-                str += data.game[Id].palabra.split('*')[0];
-
-
-                if (data.game[Id].rol.includes("EMPEZAR"))
-                    str += '<br> <span style="font-size: 0.5em;"> (Empiezas tu) </span>';
-
-                $("#rol_player_lbl").html(str);
-
-            }
-
-        }
-
-        if (data["admin"] == currentUser.Id) {
-            $("#GPL-btn_1").css("display", "block");
-        } else {
-            $("#GPL-btn_1").css("display", "none");
-        }
+        this.refreshBoard();
 
         $("#Game-playing").animate({ left: '0' });
         $("#Game-player").animate({ left: '100vw' });
@@ -40,68 +68,6 @@ class tresEnRaya_gm {
      * Logica del modo de juego del espia
      */
     logic(data) {
-
-        firebase.database().ref('data/gamemode/' + currentGamemode.name).once("value").then(function(snapshot) {
-
-            var GamemodeInfo = snapshot.val();
-
-            var keys = Object.keys(GamemodeInfo.palabra)
-            let palabraComun = GamemodeInfo.palabra[keys[keys.length * Math.random() << 0]];
-            let palabraEspia = GamemodeInfo.espia;
-
-            let juego = {};
-
-            //Update de que se esta creando la partida -- Enviar a firebase, para que todos se queden bloquedados (TODO)
-            debugger;
-            let numJugadores = Object.keys(data.users).length;
-
-            //El minimo de espias siempre es 1;
-            let numeroEspias = Math.floor(numJugadores * 10 / 100) < 1 ? 1 : Math.floor(numJugadores * 10 / 100);
-            let espiasOrganitation = new Array(numJugadores);
-
-            for (let i = 0; i < numeroEspias; i++) {
-
-                let changed;
-                do {
-                    changed = false;
-                    let position = Math.floor(Math.random() * numJugadores);
-                    if (espiasOrganitation[position] != "ESPIA") {
-                        espiasOrganitation[position] = "ESPIA";
-                        changed = true;
-                    }
-
-                } while (!changed);
-            }
-            let index = 0;
-            let firstToStart = false;
-            let positionToStart;
-
-
-            if (numJugadores > 1) {
-
-                positionToStart = Math.floor(Math.random() * numJugadores);
-                espiasOrganitation[positionToStart] += "*EMPEZAR";
-            }
-
-
-            for (userID in data.users) {
-
-                if (espiasOrganitation[index] == undefined || !espiasOrganitation[index].includes("ESPIA")) {
-                    espiasOrganitation[index] = "APALABRADO";
-                }
-                let word = (espiasOrganitation[index] == "APALABRADO") ? palabraComun : palabraEspia;
-                let key = data.users[userID].user.Id;
-
-                juego[key] = { "rol": espiasOrganitation[index], "palabra": word };
-                index++;
-
-            }
-
-            //Eliminamos las partidas anteriores
-            firebase.database().ref('rooms/' + currentGamemode.roomId + '/game').remove();
-            //Añadimos la nueva partida
-            firebase.database().ref('rooms/' + currentGamemode.roomId + '/game').set(juego);
-        });
 
     }
 }

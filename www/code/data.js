@@ -42,7 +42,8 @@ class Gamemode {
             admin: currentUser.Id,
             roomId: this.roomId,
             gamemode: this.name,
-            fechaCreacion: this.fechaModificada()
+            fechaCreacion: this.fechaModificada(),
+            gameManager: this.manager.getRoomInfo()
         }
 
         showLoading();

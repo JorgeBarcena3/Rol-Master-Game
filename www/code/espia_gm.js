@@ -54,6 +54,10 @@ class espia_gm {
         hideLoading();
     }
 
+    /**
+     * Devuelve la informacion relevante para firebase de la sala
+     */
+    getRoomInfo() { return {}; }
 
     /*
      * Logica del modo de juego del espia

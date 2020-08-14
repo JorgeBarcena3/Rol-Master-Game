@@ -24,7 +24,7 @@ async function getInfoRoom() {
 
         let promise = firebase.database().ref('rooms/' + this.currentGamemode.roomId).once("value").then(function(snapshot) {
 
-            return snapshot.val();;
+            return snapshot.val();
 
         });
 
@@ -37,6 +37,51 @@ async function getInfoRoom() {
         return null;
 
     }
+
+}
+
+/*
+ * Observamos los datos de una room
+ */
+async function getCustomPath(path) {
+
+    if (this.currentGamemode.roomId) {
+
+        let promise = await firebase.database().ref(path).once("value").then(function(snapshot) {
+
+            return snapshot.val();
+
+        });
+
+        let result = await promise;
+
+        return result;
+
+
+
+    } else {
+
+        return null;
+
+    }
+
+}
+
+/*
+ * Observamos los datos de una room
+ */
+async function setCustomPath(path, obj) {
+
+    firebase.database().ref(path).set(
+        obj,
+        function(error) {
+            if (error)
+                return error;
+            else {
+                return false;
+            }
+        }
+    );
 
 }
 

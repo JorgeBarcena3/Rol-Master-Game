@@ -461,15 +461,16 @@
     }
     
     #tablero .box {
-        background: silver;
+        background: rgba(238, 238, 238, 0.2);
         width: 25vw;
         margin: 1px;
         cursor: pointer;
         transition: all 300ms ease;
-    }
-    
-    #tablero .box:hover {
-        background: gray;
+        background-size: cover;
+        /* <------ */
+        background-repeat: no-repeat;
+        background-position: center center;
+        /* optional, center the image */
     }
     
     #tres_info_game {

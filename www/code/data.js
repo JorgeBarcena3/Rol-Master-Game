@@ -135,7 +135,9 @@ var espia_palabra_gm = new Gamemode("espia_palabra_gm",
 
 //Modo de juego por defecto
 var tres_en_raya_gm = new Gamemode("tres_en_raya_gm",
-    "Las reglas del clásico 3 en raya, pero con una vuelta de tuerca. Ahora podrás predecir el movimiento de tu adversario, si lo aciertas, el no podrá colocar su ficha perderá tu turno; si no el colocorá su ficha de manera habitual.", ["Crear una sesión", "Unete a una sesion existente"], 2);
+    "Las reglas del clásico 3 en raya, pero con una vuelta de tuerca. Ahora podrás predecir el movimiento de tu adversario, si lo aciertas, el no podrá colocar su ficha perderá tu turno; si no el colocorá su ficha de manera habitual.", ["Crear una sesión", "Unete a una sesion existente"],
+    2,
+    new tresEnRaya_gm());
 
 //Almacenamos todos los modos de juego
 var gameModes = { espia_palabra_gm, tres_en_raya_gm };

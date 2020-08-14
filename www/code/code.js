@@ -258,21 +258,8 @@ function startGame() {
 
         //Update de que se esta creando la partida -- Enviar a firebase, para que todos se queden bloquedados (TODO)
 
-        //Obtengo los datos segun mi modo de juego
-        switch (data.gamemode) {
-
-            case "espia_palabra_gm":
-
-                currentGamemode.manager.startMiniGame(data);
-                currentGamemode.manager.logic(data);
-                break;
-
-            case "tres_en_raya_gm":
-
-
-                break;
-
-        }
+        currentGamemode.manager.startMiniGame(data);
+        currentGamemode.manager.logic(data);
 
 
     });

@@ -144,6 +144,7 @@ function entrarEnLaSala() {
 
             setGameLobby();
             $("#GP-btn_2").text("Salir de la sala")
+            $("#GP-btn_1").css("display", "none");
             subscribeToEvent(roomId);
             changeToLobby();
             $("#closeModal").click();
@@ -179,7 +180,7 @@ function applyChanges(value) {
     if (value) {
         if (value.isInGame) {
             if (value.game) {
-                startMiniGame(value);
+                this.currentGamemode.manager.startMiniGame(value);
             } else {
                 showLoading();
 
@@ -196,42 +197,6 @@ function applyChanges(value) {
 
 }
 
-/*
- * Comienza la mini partida
- */
-function startMiniGame(data) {
-
-    for (Id in data.game) {
-
-        let str = "";
-        if (Id == currentUser.Id) {
-
-            str += data.game[Id].palabra.split('*')[0];
-
-
-            if (data.game[Id].rol.includes("EMPEZAR"))
-                str += '<br> <span style="font-size: 0.5em;"> (Empiezas tu) </span>';
-
-            $("#rol_player_lbl").html(str);
-
-        }
-
-    }
-
-
-
-    if (data["admin"] == currentUser.Id) {
-        $("#GPL-btn_1").css("display", "block");
-    } else {
-        $("#GPL-btn_1").css("display", "none");
-    }
-
-    $("#Game-playing").animate({ left: '0' });
-    $("#Game-player").animate({ left: '100vw' });
-    pageIndex = 4;
-
-    hideLoading();
-}
 
 function finishMiniGame() {
     //Eliminamos las partidas anteriores
@@ -256,7 +221,6 @@ function printUsers(value) {
         $("#Game-player").animate({ left: '0' });
         pageIndex = 3;
     }
-
 
     if (value["admin"] == currentUser.Id) {
         $("#GP-btn_1").css("display", "block");
@@ -293,16 +257,19 @@ function startGame() {
         firebase.database().ref('rooms/' + currentGamemode.roomId).update(data);
 
         //Update de que se esta creando la partida -- Enviar a firebase, para que todos se queden bloquedados (TODO)
-        debugger;
+
         //Obtengo los datos segun mi modo de juego
         switch (data.gamemode) {
 
             case "espia_palabra_gm":
-                espia_gm_logic(data);
+
+                currentGamemode.manager.startMiniGame(data);
+                currentGamemode.manager.logic(data);
                 break;
 
             case "tres_en_raya_gm":
-                tres_en_raya_logic(data);
+
+
                 break;
 
         }

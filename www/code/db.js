@@ -80,6 +80,7 @@ function registroAnonimo() {
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            console.log(user.uid);
             currentUser = new User(user.uid, alias, user.isAnonymous, user);
             localStorage.setItem('userKey', JSON.stringify(currentUser.getDataToFirebase()));
             pageIndex++;

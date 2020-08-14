@@ -6,13 +6,14 @@ class Gamemode {
     /*
      * Constructor por defecto, donde se inicializan los parametros
      */
-    constructor(_name = "", _description = "", _options = [], _players = 0) {
+    constructor(_name = "", _description = "", _options = [], _players = 0, _manager = 0) {
         this.name = _name;
         this.description = _description;
         this.options = _options;
         this.roomId = undefined;
         this.isInRoom = false;
         this.maxPlayers = _players;
+        this.manager = _manager;
     }
 
 
@@ -128,7 +129,9 @@ class Gamemode {
 
 //Modo de juegos por defecto
 var espia_palabra_gm = new Gamemode("espia_palabra_gm",
-    "El objetivo del juego es encontrar a los espias entre los jugadores. A cada jugador de la sala se le dirá una palabra, exceptuando a un cierto número de jugadores que se denominarán espias. Se establecerá un orden, y todos los jugadores deberan decir una palabra por turno, relacionada con la palabra clave que se os ha proporcionado (incluido los espias). No podrán ser muy especificas porque los espias adivinaran cual es la palabra y ganaran ellos.", ["Crear una sala", "Unete a una sala existente"]);
+    "El objetivo del juego es encontrar a los espias entre los jugadores. A cada jugador de la sala se le dirá una palabra, exceptuando a un cierto número de jugadores que se denominarán espias. Se establecerá un orden, y todos los jugadores deberan decir una palabra por turno, relacionada con la palabra clave que se os ha proporcionado (incluido los espias). No podrán ser muy especificas porque los espias adivinaran cual es la palabra y ganaran ellos.", ["Crear una sala", "Unete a una sala existente"],
+    0,
+    new espia_gm());
 
 //Modo de juego por defecto
 var tres_en_raya_gm = new Gamemode("tres_en_raya_gm",

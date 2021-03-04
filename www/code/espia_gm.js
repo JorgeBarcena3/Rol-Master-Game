@@ -1,7 +1,12 @@
 /*
  * Lleva a cabo la logica del juego del espia
  */
-class espia_gm {
+class espia_gm  extends Gamemode {
+
+    constructor(_name = "", _description = "", _options = [], _players = 0)
+    {
+        super(_name, _description, _options, _players);
+    }
 
     /*
      * Comienza la mini partida
@@ -54,6 +59,7 @@ class espia_gm {
         hideLoading();
     }
 
+    
     /**
      * Devuelve la informacion relevante para firebase de la sala
      */

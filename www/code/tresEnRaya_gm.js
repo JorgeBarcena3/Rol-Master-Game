@@ -1,12 +1,14 @@
 /*
  * Lleva a cabo la logica del tres en raya
  */
-class tresEnRaya_gm {
+class tresEnRaya_gm extends Gamemode {
 
     /*
      * Constructor predeterminado del juego del tres en raya
      */
-    constructor() {
+    constructor(_name = "", _description = "", _options = [], _players = 0) {
+
+        super(_name, _description, _options, _players);
 
         this.turn = 0; // Comienzan las X
         this.values = [-1, -1, -1, -1, -1, -1, -1, -1, -1]; // Valores iniciales

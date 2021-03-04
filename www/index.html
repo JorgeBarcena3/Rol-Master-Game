@@ -1,254 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
-    <title>Rol Game Master</title>
-    <link rel="stylesheet" href="./lib/Boostrap.css">
-    <link rel="stylesheet" href="./styles/styles.css">
-    <script src="./lib/JQuery.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-</head>
-
-<body>
-
-    <!-- FIREBASE CONECTION -->
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
-
-    <!-- END FIREBASE CONECTION -->
-
-    <div class="row">
-        <div class="col-12" id="Title">
-            <div>
-                <img src="./media/title.png">
+    <head>
+        <meta charset="UTF-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+        <title>Rol Game Master</title>
+        <link rel="stylesheet" href="./lib/Boostrap.css">
+        <link rel="stylesheet" href="./styles/styles.css">
+        <script src="./lib/JQuery.js"></script>
+        <script src="./lib/roulette.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <!-- FIREBASE CONECTION -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
+        <!-- END FIREBASE CONECTION -->
+        <div class="row">
+            <div class="col-12" id="Title">
+                <div>
+                    <img src="./media/title.png">
+                </div>
             </div>
-        </div>
-
-        <div id="LoadingPage">
-            <div class="spinner-border text-info" role="status">
-                <span class="sr-only">Loading...</span>
+            <div id="LoadingPage">
+                <div class="spinner-border text-info" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
-        </div>
-
-        <div id="Screens">
-
-            <div id="Login">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5 mx-auto">
-                            <div id="first">
-                                <div class="myform form ">
-                                    <div class="logo mb-3">
-                                        <div class="col-md-12 text-center" style="padding: 3vw;">
-                                            <h1>¡Introduce un Álias!</h1>
+            <div id="Screens">
+                <div id="Login">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 mx-auto">
+                                <div id="first">
+                                    <div class="myform form ">
+                                        <div class="logo mb-3">
+                                            <div class="col-md-12 text-center" style="padding: 3vw;">
+                                                <h1>¡Introduce un Álias!</h1>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="Alias" class="form-control" id="Alais_lbl" aria-describedby="Introduce un alias" placeholder="Introduce un alias">
+                                        </div>
+                                        <div class="col-md-12 text-center ">
+                                            <button class=" btn btn-block mybtn btn-primary tx-tfm" onclick="registroAnonimo()">Entrar</button>
+                                        </div>
+                                        <div class="col-md-12 ">
+                                            <div class="login-or">
+                                                <hr class="hr-or">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <p class="text-center">
+                                                <button class=" btn btn-block mybtn btn-primary tx-tfm red" onclick="registroGoogle()">Entra con Google+</button>
+                                            </p>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <input type="text" name="Alias" class="form-control" id="Alais_lbl" aria-describedby="Introduce un alias" placeholder="Introduce un alias">
-                                    </div>
-
-                                    <div class="col-md-12 text-center ">
-                                        <button class=" btn btn-block mybtn btn-primary tx-tfm" onclick="registroAnonimo()">Entrar</button>
-                                    </div>
-                                    <div class="col-md-12 ">
-                                        <div class="login-or">
-                                            <hr class="hr-or">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mb-3">
-                                        <p class="text-center">
-                                            <button class=" btn btn-block mybtn btn-primary tx-tfm red" onclick="registroGoogle()">Entra con Google+</button>
-                                        </p>
-                                    </div>
-
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-
-            </div>
-
-            <!-- MAIN MENU -->
-
-            <div id="Main-menu">
-                <div class="col-12" id="info-text">
-                    <div>
-                        Escoge un tipo de juego y crea una nueva sala o únete a una que ya ha sido creada
+                <!-- MAIN MENU -->
+                <div id="Main-menu">
+                    <div class="col-12" id="info-text">
+                        <div>
+                            Escoge un tipo de juego y crea una nueva sala o únete a una que ya ha sido creada
+                        </div>
                     </div>
-                </div>
-                <div class="row" id="game-buttons">
-                    <div class="col-12" id="palabra-game">
-                        <button class="btn btn-primary" onclick="openGamemode('espia_palabra_gm')">
-                ¡Encuentra al espia! <br>(Palabra)
-            </button>
-                    </div>
-
-                    <div class="col-12" id="palabra-game">
-                        <button class="btn btn-primary" onclick="openGamemode('tres_en_raya_gm')">
-                    3 en raya <br> (Competitivo)
-            </button>
-                    </div>
-
-                    <div class="col-12" id="palabra-game">
-                        <button class="btn btn-primary" disabled>
-                        El Sorteo
-                </button>
-                    </div>
-
-                    <div class="col-12" id="palabra-game">
-                        <button class="btn btn-primary" disabled>
-                        El asesino <br>
-                </button>
-                    </div>
-
-                    <div class="col-12" id="palabra-game">
-                        <button class="btn btn-primary" disabled>
+                    <div class="row" id="game-buttons">
+                        <div class="col-12" id="palabra-game">
+                            <button class="btn btn-primary" onclick="openGamemode('espia_palabra_gm')">
+                            ¡Encuentra al espia! <br>(Palabra)
+                            </button>
+                        </div>
+                        <div class="col-12" id="palabra-game">
+                            <button class="btn btn-primary" onclick="openGamemode('catch_de_impro_libre_gm')">
+                            Catch de Impro (Modo libre) 
+                            </button>
+                        </div>
+                        <div class="col-12" id="palabra-game">
+                            <button class="btn btn-primary" onclick="openGamemode('tres_en_raya_gm')" disabled>
+                            3 en raya <br> (Competitivo)
+                            </button>
+                        </div>
+                        <div class="col-12" id="palabra-game">
+                            <button class="btn btn-primary" disabled>
+                            El asesino <br>
+                            </button>
+                        </div>
+                        <div class="col-12" id="palabra-game">
+                            <button class="btn btn-primary" disabled>
                             El tapón <br>
-                    </button>
+                            </button>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-
-            <!-- GAME MENU -->
-            <div id="Game-menu">
-
-                <div class="col-12" id="volver_btn">
-                    <button class="btn btn-primary" onclick="closeGameMenuToMenu()">
-                       Volver al Menú <br> 
-                </button>
-                </div>
-
-                <div class="col-12" id="game-info-text">
-                    <div id="game-menu-info-text">
+                <!-- GAME MENU ONLINE -->
+                <div id="Game-menu">
+                    <div class="col-12" id="volver_btn">
+                        <button class="btn btn-primary" onclick="currentGamemode.closeGameMenuToMenu()">
+                        Volver al Menú <br> 
+                        </button>
                     </div>
-                </div>
-                <div class="row" id="game-menu-buttons">
-                    <div class="col-6">
-                        <button class="btn btn-primary" id="GM-btn_1" onclick="createRoom()">
-                Crea una sala <br>
-            </button>
+                    <div class="col-12" id="game-info-text">
+                        <div id="game-menu-info-text">
+                        </div>
                     </div>
-
-                    <div class="col-6">
-                        <button type="button" class="btn btn-primary" id="GM-btn_2" data-toggle="modal" data-target="#exampleModalCenter">
-                                   Unirse a una sala
-                                  </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Introduce el ID de una sala</h5>
-
-                                    </div>
-                                    <div class="modal-body">
-                                        <input id="RoomIdInput" type="text">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary red" id="closeModal" style="height: 100%;" data-dismiss="modal">Cerrar</button>
-                                        <button type="button" class="btn btn-primary green" style="height: 100%;" onclick="entrarEnLaSala()">Entrar en la sala</button>
+                    <div class="row" id="game-menu-buttons">
+                        <div class="col-6">
+                            <button class="btn btn-primary" id="GM-btn_1" onclick="currentGamemode.instanciateRoom()">
+                            Crea una sala <br>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-primary" id="GM-btn_2" data-toggle="modal" data-target="#exampleModalCenter">
+                            Unirse a una sala
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Introduce el ID de una sala</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input id="RoomIdInput" type="text" autocomplete="off">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary red" id="closeModal" style="height: 100%;" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary green" id="enterInRoom" style="height: 100%;" onclick="currentGamemode.entrarEnLaSala()">Entrar en la sala</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <!-- GAME PLAYER -->
-        <div id="Game-player">
-
-            <div class="col-6" id="volver_btn">
-                <button class="btn btn-primary volverMenu" onclick="removeRoom()">
-                       Volver al Menú <br> 
-                </button>
-            </div>
-
-            <div class="col-12" id="game-player-info-text">
-                <div id="game-player-info-text-container">
-                    <div id="roomId"> Id de habitacion: R4556</div>
-                    <div id="userContainer">
-
+                    <div class="col-12" id="UserContainerRowMainMenu">
+                        <div id="UserContainerMainMenu" >
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row" id="game-menu-buttons">
-                <div class="col-6">
-                    <button class="btn btn-primary green" id="GP-btn_1" style="display: none;" onclick="startGame()">
-                Comenzar partida <br>
-            </button>
+                <!-- GAME PLAYER -->
+                <div id="Game-player">
+                    <div class="col-6" id="volver_btn">
+                        <button class="btn btn-primary volverMenu" onclick="removeRoom()">
+                        Volver al Menú <br> 
+                        </button>
+                    </div>
+                    <div class="col-12" id="game-player-info-text">
+                        <div id="game-player-info-text-container">
+                            <div id="roomId"> Id de habitacion: R4556</div>
+                            <div id="userContainer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="game-menu-buttons">
+                        <div class="col-6">
+                            <button class="btn btn-primary green" id="GP-btn_1" style="display: none;" onclick="startGame()">
+                            Comenzar partida <br>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-primary red" id="GP-btn_2" onclick="removeRoom()">
+                            Salir de la sala <br> 
+                            </button>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-6">
-                    <button class="btn btn-primary red" id="GP-btn_2" onclick="removeRoom()">
-                    Salir de la sala <br> 
-            </button>
+                <!-- GAME PLAYING -->
+                <div id="Game-playing">
                 </div>
+                <!-- GAME ROULETTE -->
+                <div id="Game-Roulete">
+                    <!-- GAME MENU ONLINE -->
+                    <div class="col-12" id="volver_btn">
+                        <button class="btn btn-primary" onclick="currentGamemode.closeGameMenuToMenu()">
+                        Volver al Menú <br> 
+                        </button>
+                    </div>
+                    <div class="col-12" id="Game-Roulete-text">
+                        <div id="Game-Roulete-container" class="roulette" style="display:none;">
+                            <img src="media/star.png">
+                            <img src="media/star.png">
+                            <img src="media/star.png">
+                            <img src="media/star.png">
 
+
+                            <!-- <div class="roulette_item">
+                                <img src="media/star.png">
+                                <div>II</div>
+                            </div>
+                            <div class="roulette_item">
+                                <img src="media/1.png">
+                                <div>I</div>
+                            </div>
+                            <div class="roulette_item">
+                                <img src="media/0.png">
+                                <div>III</div>
+                            </div>
+                            <div class="roulette_item">
+                                <img src="media/star.png">
+                                <div>IV</div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row" id="Game-Roulete-buttons">
+                        <div class="col-6">
+                            <button class="btn btn-primary" id="go" onclick="currentGamemode.tirarRuleta()"> Tirar <br> </button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-primary">
+                            Jugar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" id="Game-Roulete-configuration">
+                        <div class="col-12">
+                            <div class="config-title">Tiempo (segundos): </div>
+                            <input type="text" id="cTiempo" name="Tiempo" class="config-value"><br><br>
+                        </div>
+                        <div class="col-12">
+                            <div class="config-title">Jugadores: </div>
+                            <input type="text" id="cJugadores" name="Jugadores" class="config-value"><br><br>
+                        </div>
+                    </div>
+                </div>
+                <!-- GAME EXPLANATION -->
+                <div id="Game-Explanation">
+                </div>
+                <!-- GAME IMPROVING -->
+                <div id="Game-improving">
+                </div>
             </div>
-
         </div>
-
-        <!-- GAME PLAYING -->
-        <div id="Game-playing">
-
-
-
+        <!-- Footer -->
+        <div class="col-12" id="Autor">
+            Copyright 2021 - Jorge Barcena Lumbreras
         </div>
-    </div>
-
-
-    <!-- Footer -->
-
-    <div class="col-12" id="Autor">
-        Copyright 2020 - Jorge Barcena Lumbreras</div>
-
-
-    <!-- Background circles -->
-    <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-
-    <script src="./code/user.js"></script>
-    <script src="./code/db.js"></script>
-    <script src="./code/espia_gm.js"></script>
-    <script src="./code/tresEnRaya_gm.js"></script>
-    <script src="./code/data.js"></script>
-    <script src="./code/code.js"></script>
-    <script src="./code/app.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-
-</body>
-
+        <!-- Background circles -->
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <script src="./code/user.js"></script>
+        <script src="./code/Player.js"></script>
+        <script src="./code/db.js"></script>
+        <script src="./code/Gamemode.js"></script>
+        <script src="./code/espia_gm.js"></script>
+        <script src="./code/tresEnRaya_gm.js"></script>
+        <script src="./code/catchDeImproLibre_gm.js"></script>
+        <script src="./code/data.js"></script>
+        <script src="./code/code.js"></script>
+        <script src="./code/app.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
 </html>

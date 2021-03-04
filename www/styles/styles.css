@@ -153,7 +153,7 @@
         left: 100vw;
     }
     
-    #Game-menu {
+    #Game-menu, #GameOffline-menu {
         position: absolute;
         width: 100vw;
         top: 14vh;
@@ -161,6 +161,50 @@
     }
     
     #Game-player {
+        position: absolute;
+        width: 100vw;
+        top: 14vh;
+        left: 100vw;
+    }
+
+    #Game-Roulete-text
+    {
+        margin-top: 2vh;
+        height: 30vh;
+    }
+
+    #Game-Roulete-container
+    {
+        background: #34495e;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        border-radius: 15px;
+        color: #ecf0f1;
+        overflow: hidden;
+
+    }
+
+    .roulette_item
+    {
+        text-align: center;
+        height: 100%;
+        margin-bottom: 2vh;
+    }
+
+    #Game-Roulete-buttons
+    {
+        padding: 0 15vw 0 15vw;
+    }
+
+    #Game-Roulete-buttons button
+    {
+        height: 15vh;
+        background: #8e44ad;
+        width: 100%;
+    }
+    
+    #Game-Roulete {
         position: absolute;
         width: 100vw;
         top: 14vh;
@@ -218,16 +262,16 @@
         overflow: scroll;
     }
     
-    #game-menu-buttons {
+    #game-menu-buttons, #gameOffline-menu-buttons {
         padding: 0 15vw 0 15vw;
     }
     
-    #game-menu-buttons button {
+    #game-menu-buttons button, #gameOffline-menu-buttons button {
         height: 15vh;
         background: #8e44ad;
     }
     
-    #game-info-text {
+    #game-info-text, #gameOffline-info-text {
         font-family: "SFSlapstickComic";
         color: #ecf0f1;
         margin-top: 2vh;
@@ -259,6 +303,29 @@
         background: red;
         padding: 1px;
         border-radius: 5px;
+        overflow: scroll;
+        max-height: 40vh;
+    }
+
+    #UserContainerMainMenu {
+        padding: 1px;
+        border-radius: 5px;
+        overflow: scroll;
+        max-height: 30vh;
+
+        background: #34495e;
+        padding: 1vh 5vw 1vh 5vw;
+        border-radius: 13px;
+        font-size: 15px;
+        line-height: 22px;
+
+    }
+
+    #UserContainerRowMainMenu
+    {   
+        padding: 0 15vw 0 15vw;
+        margin-top: 2vh;
+        color: #ecf0f1;
     }
     
     #game-player-info-text {
@@ -279,10 +346,6 @@
         line-height: 22px;
     }
     
-    #userContainer {
-        overflow: scroll;
-        max-height: 40vh;
-    }
     
     .userInfo {
         background: #2c3e50;

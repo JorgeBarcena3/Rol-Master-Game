@@ -117,7 +117,10 @@ var app = {
             "Login",
             "Main-menu",
             "Game-menu",
-            "Game-player"
+            "Game-player",
+            "Game-Roulete",
+            "Game-Explanation",
+            "Game-improving"
         ];
 
         for (let i = 0; i < pages.length; i++) {

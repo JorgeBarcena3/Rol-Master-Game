@@ -20,6 +20,7 @@ var database;
  */
 async function getInfoRoom() {
 
+    
     if (this.currentGamemode.roomId) {
 
         let promise = firebase.database().ref('rooms/' + this.currentGamemode.roomId).once("value").then(function(snapshot) {
@@ -135,9 +136,8 @@ function registroAnonimo() {
         }
     });
 
+    this.currentGamemode.setMainMenu();
 
-
-    setMainMenu();
     $("#Login").animate({ left: '-100vw' }, function() {
         $("#Login").css("left", "100vw");
     });

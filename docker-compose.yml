@@ -1,0 +1,9 @@
+services:
+  rolmastergame:
+    image: nginx:alpine
+    container_name: rolmastergame
+    restart: always
+    ports:
+      - "6683:80"
+    volumes:
+      - ./www:/usr/share/nginx/html:ro
